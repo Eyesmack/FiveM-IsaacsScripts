@@ -1,6 +1,6 @@
 --[[ Version Checker ]]--
 local resourceName = GetCurrentResourceName()
-local version = GetResourceMetadata(resourceName, 'version', 0)
+local localVersion = GetResourceMetadata(resourceName, 'version', 0)
 
 AddEventHandler("onResourceStart", function(resource)
     if resource == resourceName then
@@ -9,12 +9,15 @@ AddEventHandler("onResourceStart", function(resource)
 end)
 
 function CheckUpToDate()
-    PerformHttpRequest("https://raw.githubusercontent.com/Eyesmack/FiveM-IsaacsScripts/refs/heads/master/version.txt", function(err, text, headers)
-        if string.match(text, version) then
+    PerformHttpRequest("https://raw.githubusercontent.com/Eyesmack/FiveM-IsaacsScripts/refs/heads/master/fxmanifest.lua", function(err, text, headers)
+        local startIndex, endIndex = string.find(text, "\nversion \"")
+        local version = string.sub(text, endIndex + 1, endIndex + 5)
+
+        if string.match(version, localVersion) then
             PrintSpace()
             print("------------------------------------------------")
             PrintLogo()
-            print("#Version: ^2" .. version .. "^7")
+            print("#Version: ^2" .. localVersion .. "^7")
             print("#Up to date and ready to go!")
             print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
             print("------------------------------------------------")
@@ -23,8 +26,8 @@ function CheckUpToDate()
             PrintSpace()
             print("------------------------------------------------")
             PrintLogo()
-            print("#Version: ^8" .. version .. "^7")
-            print("#Latest Version: ^2" .. text .. "^7")
+            print("#Version: ^8" .. localVersion .. "^7")
+            print("#Latest Version: ^2" .. version .. "^7")
             print("#^8Out of Date^7, Update for more features!")
             print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
             print("------------------------------------------------")
