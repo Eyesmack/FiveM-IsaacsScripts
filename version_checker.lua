@@ -11,6 +11,9 @@ end)
 function CheckUpToDate()
     PerformHttpRequest("https://raw.githubusercontent.com/Eyesmack/FiveM-IsaacsScripts/refs/heads/master/fxmanifest.lua", function(err, text, headers)
         local startIndex, endIndex = string.find(text, "\nversion \"")
+
+        -- TODO: Handle cases where the version is longer than 5 characters eg. "1.0.10" or "1.0.100"
+        -- This will only work for versions like "1.0.0" or "1.0.1"
         local version = string.sub(text, endIndex + 1, endIndex + 5)
 
         if string.match(version, localVersion) then
@@ -19,6 +22,7 @@ function CheckUpToDate()
             PrintLogo()
             print("#Version: ^2" .. localVersion .. "^7")
             print("#Up to date and ready to go!")
+            PrintInstalledScripts()
             print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
             print("------------------------------------------------")
             PrintSpace()
@@ -29,6 +33,7 @@ function CheckUpToDate()
             print("#Version: ^8" .. localVersion .. "^7")
             print("#Latest Version: ^2" .. version .. "^7")
             print("#^8Out of Date^7, Update for more features!")
+            PrintInstalledScripts()
             print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
             print("------------------------------------------------")
             PrintSpace()
@@ -52,8 +57,35 @@ function PrintLogo()
     print("#                    |_|            ")
 end
 function PrintSpace()
-    print(" ")
-    print(" ")
-    print(" ")
-    print(" ")
+    for i = 1, 3 do
+        print("")
+    end
+end
+function PrintInstalledScripts()
+    local resourcePath = GetResourcePath(resourceName) -- Gets the absolute path to the resource's root directory
+    local myFiles = GetFilesInDirectory(resourcePath .. "/client/")
+    local returnString = ""
+    for i, fileName in ipairs(myFiles) do
+        if string.find(fileName, ".lua") then
+            returnString = returnString .. fileName:match("(.+)%..+$") .. " "
+        end
+    end
+    print("#Installed Scripts: " .. returnString)
+end
+function GetFilesInDirectory(directoryPath)
+    local files = {}
+    local command
+
+    command = "dir \"" .. directoryPath .. "\" /b /a-d" -- /b for bare format, /a-d to exclude directories
+
+    local handle = io.popen(command)
+    if handle then
+        for line in handle:lines() do
+            table.insert(files, line)
+        end
+        handle:close()
+    else
+        print("Error: Could not execute command to list files in " .. directoryPath)
+    end
+    return files
 end
