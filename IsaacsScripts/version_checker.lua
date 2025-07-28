@@ -9,7 +9,7 @@ AddEventHandler("onResourceStart", function(resource)
 end)
 
 function CheckUpToDate()
-    PerformHttpRequest("https://raw.githubusercontent.com/Eyesmack/FiveM-IsaacsScripts/refs/heads/master/fxmanifest.lua", function(err, text, headers)
+    PerformHttpRequest("https://raw.githubusercontent.com/Eyesmack/FiveM-IsaacsScripts/refs/heads/master/IsaacsScripts/fxmanifest.lua", function(err, text, headers)
         local startIndex, endIndex = string.find(text, "\nversion \"")
 
         -- TODO: Handle cases where the version is longer than 5 characters eg. "1.0.10" or "1.0.100"
@@ -17,7 +17,7 @@ function CheckUpToDate()
         local version = string.sub(text, endIndex + 1, endIndex + 5)
 
         if string.match(version, localVersion) then
-            PrintSpace()
+            print(" ")
             print("------------------------------------------------")
             PrintLogo()
             print("#Version: ^2" .. localVersion .. "^7")
@@ -25,9 +25,9 @@ function CheckUpToDate()
             PrintInstalledScripts()
             print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
             print("------------------------------------------------")
-            PrintSpace()
+            print(" ")
         else
-            PrintSpace()
+            print(" ")
             print("------------------------------------------------")
             PrintLogo()
             print("#Version: ^8" .. localVersion .. "^7")
@@ -36,7 +36,7 @@ function CheckUpToDate()
             PrintInstalledScripts()
             print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
             print("------------------------------------------------")
-            PrintSpace()
+            print(" ")
         end
 
     end, "GET", "", {})
@@ -56,11 +56,6 @@ function PrintLogo()
     print("#                    | |            ")
     print("#                    |_|            ")
 end
-function PrintSpace()
-    for i = 1, 3 do
-        print("")
-    end
-end
 function PrintInstalledScripts()
     local resourcePath = GetResourcePath(resourceName) -- Gets the absolute path to the resource's root directory
     local myFiles = GetFilesInDirectory(resourcePath .. "/client/")
@@ -70,7 +65,7 @@ function PrintInstalledScripts()
             returnString = returnString .. fileName:match("(.+)%..+$") .. " "
         end
     end
-    print("#Installed Scripts: " .. returnString)
+    print("#Installed Scripts: ^3" .. returnString .. "^7")
 end
 function GetFilesInDirectory(directoryPath)
     local files = {}
