@@ -1,13 +1,19 @@
 RegisterCommand('spawn', function (source, args, rawCommand)
     local ped = GetPlayerPed(-1)
 
+    local vehicleName = args[1] or 'POLICE'
+
+    -- check if the vehicle actually exists
+    if not IsModelInCdimage(vehicleName) or not IsModelInCdimage(vehicleName) then
+        TriggerEvent('notify:client:notify', "Vehicle does not exist: ~r~" .. vehicleName .. "~s~")
+        return
+    end
+
     if IsPedSittingInAnyVehicle(ped) then
         local vehicle = GetVehiclePedIsIn(ped, false)
         SetEntityAsMissionEntity(vehicle, true, true)
         DeleteVehicle(vehicle)
-    end 
-
-    local vehicleName = args[1] or 'POLICE'
+    end
 
     RequestModel(vehicleName)
 
