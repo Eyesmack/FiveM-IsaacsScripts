@@ -29,6 +29,8 @@ RegisterCommand('spawn', function (source, args, rawCommand)
 
     SetPedIntoVehicle(playerPed, vehicle, -1)
 
+    SetVehicleEngineOn(vehicle, true, true, true)
+
     SetEntityAsNoLongerNeeded(vehicle)
     SetModelAsNoLongerNeeded(vehicleName)
 end, false)
