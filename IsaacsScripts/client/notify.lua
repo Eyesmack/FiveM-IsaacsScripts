@@ -19,9 +19,9 @@ end)
 
 -- Use the below code to call this function
 -- To play a sound as well as notify use this line
--- TriggerEvent('notify:cl_notify', "[TEXT GOES HERE]", Integer)
+-- TriggerEvent('notify:cl:notify', "[TEXT GOES HERE]", Integer)
 -- To not play a sound use this line, aka, remove the second parameter
--- TriggerEvent('notify:cl_notify', "[TEXT GOES HERE]")
+-- TriggerEvent('notify:cl:notify', "[TEXT GOES HERE]")
 RegisterNetEvent('notify:cl:notify')
 AddEventHandler('notify:cl:notify', function(alert, sound)
 	Notify(alert)
