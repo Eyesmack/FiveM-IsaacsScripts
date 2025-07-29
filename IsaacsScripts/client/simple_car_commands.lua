@@ -71,6 +71,7 @@ RegisterCommand('vehinfo', function(source, args, rawCommand)
     local displayName = GetDisplayNameFromVehicleModel(entityModelHash)
     local bodyHealth = GetVehicleBodyHealth(vehicle)
     local engineHealth = GetVehicleEngineHealth(vehicle)
+    local tankHealth = GetVehiclePetrolTankHealth(vehicle)
     local plateNumber = GetVehicleNumberPlateText(vehicle)
 
     -- print the vehicle info to the console
@@ -82,6 +83,7 @@ RegisterCommand('vehinfo', function(source, args, rawCommand)
     print("VehicleNumberPlateText: " .. plateNumber)
     print("VehicleBodyHealth: " .. bodyHealth)
     print("VehicleEngineHealth: " .. engineHealth)
+    print("VehiclePetrolTankHealth: " .. tankHealth)
     print("###################################################")
 
     TriggerEvent('notify:cl:notify', "Name: ~b~" .. displayName .. "~s~~n~Body Health: ~b~" .. bodyHealth .. "~s~~n~Engine Health: ~b~" .. engineHealth)
