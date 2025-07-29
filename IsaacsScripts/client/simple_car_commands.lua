@@ -1,7 +1,7 @@
 RegisterCommand('spawn', function (source, args, rawCommand)
     local ped = GetPlayerPed(-1)
 
-    local vehicleName = args[1] or 'POLICE'
+    local vehicleName = args[1] or 'frontline' -- Default to 'frontline' if no argument is provided
 
     -- check if the vehicle actually exists
     if not IsModelInCdimage(vehicleName) or not IsModelInCdimage(vehicleName) then
