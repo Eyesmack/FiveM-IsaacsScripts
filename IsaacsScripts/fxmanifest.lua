@@ -2,7 +2,7 @@ fx_version "cerulean"
 game "gta5"
 
 author "Isaac"
-version "1.1.2"
+version "1.1.3"
 description "Isaacs Scripts - A collection of scripts for FiveM."
 lua54 "yes"
 
