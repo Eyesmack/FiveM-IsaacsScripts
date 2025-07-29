@@ -33,11 +33,11 @@ RegisterCommand('traffic', function (source, args, rawCommand)
         local frequency = tonumber(args[1])
         if frequency ~= nil and frequency >= 0.0 and frequency <= 1.0 then
             trafficFrequency = frequency
-            TriggerEvent('notify:cl:notify', "Ped density set to " .. trafficFrequency)
+            TriggerEvent('notify:cl:notify', "Traffic density set to " .. trafficFrequency)
         else
-            TriggerEvent('notify:cl:notify', "Invalid ped density value. Must be between 0.0 and 1.0.")
+            TriggerEvent('notify:cl:notify', "Invalid traffic density value. Must be between 0.0 and 1.0.")
         end
     else
-        TriggerEvent('notify:cl:notify', "Current ped density: " .. trafficFrequency)
+        TriggerEvent('notify:cl:notify', "Current traffic density: " .. trafficFrequency)
     end
 end, false)
