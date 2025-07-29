@@ -4,7 +4,7 @@ game "gta5"
 author "Isaac"
 
 -- Do not change these two lines, they are used to check for updates
-version "1-alpha.1.10"
+version "1-alpha.1.11"
 description "Isaacs Scripts - A collection of scripts for FiveM."
 
 lua54 "yes"
