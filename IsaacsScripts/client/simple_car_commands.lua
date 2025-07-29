@@ -5,7 +5,7 @@ RegisterCommand('spawn', function (source, args, rawCommand)
 
     -- check if the vehicle actually exists
     if not IsModelInCdimage(vehicleName) or not IsModelInCdimage(vehicleName) then
-        TriggerEvent('notify:client:notify', "Vehicle does not exist: ~r~" .. vehicleName .. "~s~")
+        TriggerEvent('notify:cl:notify', "Vehicle does not exist: ~r~" .. vehicleName .. "~s~")
         return
     end
 
@@ -25,7 +25,7 @@ RegisterCommand('spawn', function (source, args, rawCommand)
     local pos = GetEntityCoords(playerPed)
     local vehicle = CreateVehicle(vehicleName, pos.x, pos.y, pos.z, GetEntityHeading(playerPed), true, false)
 
-    TriggerEvent('notify:client:notifynosound', "Spawned " .. GetDisplayNameFromVehicleModel(GetEntityModel(vehicle)))
+    TriggerEvent('notify:cl:notify', "Spawned " .. GetDisplayNameFromVehicleModel(GetEntityModel(vehicle)))
 
     SetPedIntoVehicle(playerPed, vehicle, -1)
 
@@ -39,6 +39,7 @@ RegisterCommand('dv', function ()
         local vehicle = GetVehiclePedIsIn(ped, false)
         SetEntityAsMissionEntity(vehicle, true, true)
         DeleteVehicle(vehicle)
+        TriggerEvent('notify:cl:notify', "Vehicle deleted", 4)
     end
 end, false)
 
@@ -51,6 +52,7 @@ RegisterCommand('fix', function (source, args, rawCommand)
             SetVehicleBodyHealth(vehicle, 1000.0)
             SetVehicleEngineHealth(vehicle, 1000.00)
             SetVehicleFixed(vehicle)
+            TriggerEvent('notify:cl:notify', "Vehicle fixed", 4)
         end
     end
 end, false)
