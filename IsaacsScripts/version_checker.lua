@@ -28,11 +28,14 @@ function CheckUpToDate()
         -- print("^8Blood Red")
         -- print("^9Patriotic Blue^7")
 
+        -- Wait for 5 seconds to ensure the resource is fully started
+        -- This is to make sure the http request has time to complete before checking the version
+        Citizen.Wait(5000)
+
         if localVersion == version then
             -- Versions match exactly
             if string.find(localVersion, '-') ~= nil then
                 -- Using an alpha build
-                print(" ")
                 print("------------------------------------------------")
                 PrintLogo("^3")
                 print("#Version: ^2" .. localVersion .. " [" .. CalcBuildNum(localVersion) .. "]^7")
@@ -41,10 +44,8 @@ function CheckUpToDate()
                 PrintInstalledScripts()
                 print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
                 print("------------------------------------------------")
-                print(" ")
             else
                 -- Not using an alpha build
-                print(" ")
                 print("------------------------------------------------")
                 PrintLogo("^2")
                 print("#Version: ^2" .. localVersion .. " [" .. CalcBuildNum(localVersion) .. "]^7")
@@ -52,13 +53,11 @@ function CheckUpToDate()
                 PrintInstalledScripts()
                 print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
                 print("------------------------------------------------")
-                print(" ")
             end
         elseif CalcBuildNum(localVersion) == CalcBuildNum(version) then
             -- Using a build that matches the latest build on github
             if string.find(localVersion, '-') ~= nil then
                 -- Using an alpha build
-                print(" ")
                 print("------------------------------------------------")
                 PrintLogo("^3")
                 print("#Version: ^2" .. localVersion .. " [" .. CalcBuildNum(localVersion) .. "]^7")
@@ -67,10 +66,8 @@ function CheckUpToDate()
                 PrintInstalledScripts()
                 print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
                 print("------------------------------------------------")
-                print(" ")
             else
                 -- Not using an alpha build
-                print(" ")
                 print("------------------------------------------------")
                 PrintLogo("^2")
                 print("#Version: ^2" .. localVersion .. " [" .. CalcBuildNum(localVersion) .. "]^7")
@@ -78,11 +75,9 @@ function CheckUpToDate()
                 PrintInstalledScripts()
                 print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
                 print("------------------------------------------------")
-                print(" ")
             end
         elseif CalcBuildNum(localVersion) > CalcBuildNum(version) then
             -- Using a build that is higher than the latest on github
-            print(" ")
             print("------------------------------------------------")
             PrintLogo("^3")
             print("#Your Version: ^8" .. localVersion .. " [" .. CalcBuildNum(localVersion) .. "]^7")
@@ -94,10 +89,8 @@ function CheckUpToDate()
             PrintInstalledScripts()
             print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
             print("------------------------------------------------")
-            print(" ")
         else
             -- Everything else
-            print(" ")
             print("------------------------------------------------")
             PrintLogo("^8")
             print("#Version: ^8" .. localVersion .. " [" .. CalcBuildNum(localVersion) .. "]^7")
@@ -106,7 +99,6 @@ function CheckUpToDate()
             PrintInstalledScripts()
             print("#^5https://github.com/Eyesmack/FiveM-IsaacsScripts^7")
             print("------------------------------------------------")
-            print(" ")
         end
     end, "GET", "", {})
 end
