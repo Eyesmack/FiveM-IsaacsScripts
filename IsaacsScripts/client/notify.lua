@@ -1,22 +1,5 @@
 local soundsDB = SoundLibrary.Sounds
 
--- Don't use this event anymore, will be removed in a future update
--- Just need to find all the instances of this event and replace them with the new one
-RegisterNetEvent('notify:client:notify')
-AddEventHandler('notify:client:notify', function(alert)
-	PlaySoundFrontend(-1, "TIMER_STOP", "HUD_MINI_GAME_SOUNDSET", true)
-	Notify(alert)
-	Notify("~r~This is a depreciated method of calling an alert!~s~")
-end)
-
--- Don't use this event anymore, will be removed in a future update
--- Just need to find all the instances of this event and replace them with the new one
-RegisterNetEvent('notify:client:notifynosound')
-AddEventHandler('notify:client:notifynosound', function(alert)
-	Notify(alert)
-	Notify("~r~This is a depreciated method of calling an alert!~s~")
-end)
-
 -- Use the below code to call this function
 -- To play a sound as well as notify use this line
 -- TriggerEvent('notify:cl:notify', "[TEXT GOES HERE]", Integer)
