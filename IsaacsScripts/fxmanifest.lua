@@ -2,8 +2,11 @@ fx_version "cerulean"
 game "gta5"
 
 author "Isaac"
-version "1.1.3"
+
+-- Do not change these two lines, they are used to check for updates
+version "1.1.4"
 description "Isaacs Scripts - A collection of scripts for FiveM."
+
 lua54 "yes"
 
 server_scripts {

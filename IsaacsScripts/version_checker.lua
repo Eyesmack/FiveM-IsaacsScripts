@@ -10,11 +10,13 @@ end)
 
 function CheckUpToDate()
     PerformHttpRequest("https://raw.githubusercontent.com/Eyesmack/FiveM-IsaacsScripts/refs/heads/master/IsaacsScripts/fxmanifest.lua", function(err, text, headers)
+        -- Find the version in the fxmanifest.lua file
         local startIndex, endIndex = string.find(text, "\nversion \"")
+        -- Find the description in the fxmanifest.lua file
+        local descStartIndex, descEndIndex = string.find(text, "\ndescription \"")
 
-        -- TODO: Handle cases where the version is longer than 5 characters eg. "1.0.10" or "1.0.100"
-        -- This will only work for versions like "1.0.0" or "1.0.1"
-        local version = string.sub(text, endIndex + 1, endIndex + 5)
+        -- Get the version number from the fxmanifest.lua file by using the endIndex of the version string and the startIndex of the description string
+        local version = string.sub(text, endIndex + 1, descStartIndex - 2)
 
         if string.match(version, localVersion) then
             print(" ")
