@@ -1,11 +1,14 @@
 # FiveM-IsaacsScripts
 A Repo for all my scripts that work together
 
-# FiveM PVP
-### Description
-A simple script for enabling PVP on a FiveM server.
-### Plans
-I plan to make this script so you can toggle PVP on or off if you have admin permissions.
-### Natives Used
-- [SetCanAttackFriendly](https://docs.fivem.net/natives/?_0xB3B1CB349FF9C75D)
-- [NetworkSetFriendlyFireOption](https://docs.fivem.net/natives/?_0xF808475FA571D823)
+## Current Scripts Included
+### SimplePVP
+- A simple script to turn on PVP when the player is spawned.
+### SimpleCarCommands
+- Some simple commands to do with your car.
+### Notify
+- _soundLibrary (This is a dependency of Notify)
+- A simple script allowing you to send notifications with or without sound with one line of code.
+### Debug
+- A simple script that I use to debug.
+- Potentially has random commands inside.
