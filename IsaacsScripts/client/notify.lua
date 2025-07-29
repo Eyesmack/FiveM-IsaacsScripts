@@ -25,7 +25,7 @@ end)
 RegisterNetEvent('notify:cl:notify')
 AddEventHandler('notify:cl:notify', function(alert, sound)
 	Notify(alert)
-	if sound ~= nil or sound ~= '' then
+	if sound ~= nil and sound ~= '' then
 		PlaySoundFrontend(-1, soundsDB[sound].AudioName, soundsDB[sound].AudioRef, true)
 	end
 end)
